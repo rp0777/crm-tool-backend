@@ -1,21 +1,23 @@
-# Use Node.js official image
-FROM node:20-alpine
+# Use Node.js base image
+FROM node:18-alpine
 
-# Create app directory
-WORKDIR /usr/src/app
+# Set working directory
+WORKDIR /app
 
-# Install app dependencies
+# Copy package files
 COPY package*.json ./
+
+# Install dependencies
 RUN npm install --production
 
-# Bundle app source
+# Copy source code
 COPY . .
 
 # Build the app
 RUN npm run build
 
-# Expose the port
-EXPOSE 8080
+# Expose port
+EXPOSE 7778
 
 # Start the app
 CMD ["node", "dist/main"]
