@@ -2,6 +2,7 @@ import { Body, Controller, Get, Logger, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { LeadService } from '../service/lead/lead.service';
 import { CreateLeadDto } from '../dto/create-lead.dto';
+import { SmsDataDto } from '../dto/sms-data.dto';
 
 @ApiTags('lead')
 @ApiBearerAuth()
@@ -20,6 +21,13 @@ export class LeadController {
   @Post()
   createLead(@Body() lead: CreateLeadDto) {
     const createdLead = this.leadService.createLead(lead);
+
+    return createdLead;
+  }
+
+  @Post('/send-sms')
+  sendSms(@Body() smsData: SmsDataDto) {
+    const createdLead = this.leadService.sendSms(smsData);
 
     return createdLead;
   }
