@@ -4,6 +4,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import configuration from './config/configuration';
+import { TwilioModule } from './twilio/twilio.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import configuration from './config/configuration';
       inject: [ConfigService],
     }),
     LeadModule,
+    TwilioModule,
   ],
   controllers: [],
   providers: [],
